@@ -14,7 +14,10 @@ class DatabaseHandler{
 		return $dbh;	
 	}
 
-	
+	public function getGameById($id){
+		$db = this->openConnection();
+		return 0;
+	}	
 	
 }
 
