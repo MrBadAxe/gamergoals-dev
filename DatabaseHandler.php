@@ -3,7 +3,7 @@
 class DatabaseHandler{
 
 	private function openConnection(){
-		$cfg = parse_ini_file("./db.ini");
+		$cfg = parse_ini_file("../db.ini");
 		$dsn = "mysql:dbname=".$cfg['db'].";host=".$cfg['hostname'];
 		try{
 			$dbh = new PDO($dsn,$cfg['user'],$cfg['pass']);
