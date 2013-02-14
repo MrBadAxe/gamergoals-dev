@@ -4,14 +4,16 @@ class Account{
 	private $mId;
 	private $mUsername;
 	private $mPassword;
+	private $mPWsalt;
 	private $mCreated;
 	private $mValidated;
 	private $mEmail;
 
-	public __construct($id,$un,$pw,$cr,$v,$em){
+	public __construct($id,$un,$pw,$salt,$cr,$v,$em){
 		$mId = $id;
 		$mUsername = $un;
 		$mPassword = $pw;
+		$mPWsalt = $salt;
 		$mCreated = $cr;
 		$mValidated = $v;
 		$mEmail = $em;
@@ -29,6 +31,10 @@ class Account{
 		return $mPassword;
 	}
 
+	private getPasswordSalt(){
+		return $mPWsalt;
+	}
+	
 	private getCreated(){
 		return $mCreated;
 	}
