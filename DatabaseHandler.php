@@ -14,11 +14,19 @@ class DatabaseHandler{
 		return $dbh;	
 	}
 
-	public function getGameById($id){
+	public static function querySingleRowResult($q,array $params){
 		$db = this->openConnection();
-		return 0;
-	}	
+		$st = $db->prepare($q);
+		$st->execute($params);
+		return $st->fetch(PDO::FETCH_ASSOC);
+	}
 	
+	public static function queryMultiRowResult($q,array $params){
+		$db = this->openConnection();
+		$st = $db->prepare($q);
+		$st->execute($params);
+		return $st->fetchAll(PDO::FETCH_ASSOC);
+	}
 }
 
 ?>
