@@ -14,6 +14,12 @@ class DatabaseHandler{
 		return $dbh;	
 	}
 
+	public static function queryNoResult($q,array $params){
+		$db = this->openConnection();
+		$st = $db->prepare($q);
+		$st->execute($params);
+	}
+
 	public static function querySingleRowResult($q,array $params){
 		$db = this->openConnection();
 		$st = $db->prepare($q);
