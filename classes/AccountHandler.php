@@ -41,7 +41,7 @@ class AccountHandler{
 		DatabaseHandler->queryNoResult($q,new array(':user' => $mUser,':pass' => $mPass,':salt' => $mSalt, ':email' => $mEmail));
 	}
 
-	public static function attemptLogin($user,$pass){
+	public static function validateLogin($user,$pass){
 		$mUser = $user;
 		$mPass = $pass;
 		
