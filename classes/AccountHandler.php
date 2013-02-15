@@ -1,11 +1,21 @@
 <?php
 
+include_once './Account.php';
+
 class AccountHandler{
 	private function __construct(){}
+	private static $accth;
+
+	public static function getInstance(){
+		if($accth == NULL){
+			$accth = new AccountHandler();
+		}
+		return $accth;
+	}
 
 	public static function getAccountByName($user){
 		$q = "select * from accounts where username = :user";
-		$result = DatabaseHandler->querySingleRowResult($q,new array(':user' => $user));
+		$result = DatabaseHandler::querySingleRowResult($q,array(':user' => $user));
 		
 		$rId = $result['userid'];
 		$rUser = $result['username'];
@@ -38,18 +48,18 @@ class AccountHandler{
 		$mEmail = $email;
 
 		$q = "insert into accounts (username,password,pwsalt,email) values(:user,:pass,:salt,:email)";
-		DatabaseHandler->queryNoResult($q,new array(':user' => $mUser,':pass' => $mPass,':salt' => $mSalt, ':email' => $mEmail));
+		DatabaseHandler::queryNoResult($q,array(':user' => $mUser,':pass' => $mPass,':salt' => $mSalt, ':email' => $mEmail));
 	}
 
 	public static function validateLogin($user,$pass){
 		$mUser = $user;
 		$mPass = $pass;
 		
-		Account $acct = this->getAccountByName($mUser);
-		if(!$acct->isValid()){
+		$acct = self::getAccountByName($mUser);
+		if(!$acct::isValid()){
 			return FALSE;
 		}
-		if($acct->getPassword == this->hashFromPassword($mPass,$acct->getPWsalt())){
+		if($acct::getPassword() == self::hashFromPassword($mPass,$acct::getPWsalt())){
 			return TRUE;
 		}
 	}

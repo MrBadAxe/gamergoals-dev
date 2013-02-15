@@ -6,10 +6,13 @@ if($_POST['user'] && $_POST['pass']){
 	$vUser = $_POST['user'];
 	$vPass = $_POST['pass'];
 
-	if(AccountHandler->validateLogin($vUser,$vPass)){
+	$accth = AccountHandler::getInstance();
+	if($accth->validateLogin($user,$pass));
+	{
 		/* create cookie */
 		/* redirect to home */
 	}
+}
 ?>
 <!DOCTYPE html>
 <html>

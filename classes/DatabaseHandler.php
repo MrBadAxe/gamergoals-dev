@@ -2,6 +2,17 @@
 
 class DatabaseHandler{
 
+	private DatabaseHandler $mDBH;
+
+	private function __construct(){}
+
+	public function getInstance(){
+		if($mDBH == null){
+			$mDBH = new DatabaseHandler();
+		{
+		return $mDBH;
+	}
+
 	private function openConnection(){
 		$cfg = parse_ini_file("../db.ini");
 		$dsn = "mysql:dbname=".$cfg['db'].";host=".$cfg['hostname'];
