@@ -1,21 +1,29 @@
 <?php
 
-include_once './Account.php';
+namespace GamerGoals;
+
+include_once '../ggpath.rc';
+include_once "$ggpath/classes/DatabaseHandler.php";
+use GamerGoals\DatabaseHandler;
+use Exception;
 
 class AccountHandler{
 	private function __construct(){}
 	private static $accth;
 
 	public static function getInstance(){
-		if($accth == NULL){
-			$accth = new AccountHandler();
+		if(self::$accth == NULL){
+			self::$accth = new AccountHandler();
 		}
-		return $accth;
+		return self::$accth;
 	}
 
 	public static function getAccountByName($user){
 		$q = "select * from accounts where username = :user";
 		$result = DatabaseHandler::querySingleRowResult($q,array(':user' => $user));
+		if($result == NULL){
+			throw new Exception("No Results");
+		}
 		
 		$rId = $result['userid'];
 		$rUser = $result['username'];
@@ -56,12 +64,17 @@ class AccountHandler{
 		$mPass = $pass;
 		
 		$acct = self::getAccountByName($mUser);
+		
+		if($acct == FALSE){
+			throw new Exception("Username '".$mUser."' does not exist.");
+		}
 		if(!$acct::isValid()){
-			return FALSE;
+			throw new Exception("The account for username '".$mUser."' has not been validated.");
 		}
-		if($acct::getPassword() == self::hashFromPassword($mPass,$acct::getPWsalt())){
-			return TRUE;
+		if($acct::getPassword() != self::hashFromPassword($mPass,$acct::getPasswordSalt())){
+			throw new Exception("Your password is incorrect.");
 		}
+		return TRUE;
 	}
 }
 

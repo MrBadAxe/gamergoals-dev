@@ -1,17 +1,20 @@
 <?
-
 include_once './classes/AccountHandler.php';
+use GamerGoals\AccountHandler;
 
-if($_POST['user'] && $_POST['pass']){
+$errorMessage = "";
+
+if(isset($_POST['user']) && isset($_POST['pass'])){
 	$vUser = $_POST['user'];
 	$vPass = $_POST['pass'];
 
 	$accth = AccountHandler::getInstance();
-	if($accth->validateLogin($user,$pass));
-	{
-		/* create cookie */
-		/* redirect to home */
+	try{
+		$vResult = $accth->validateLogin($user,$pass);
+	}catch(Exception $e){
+		$errorMessage = $e->getMessage();
 	}
+	$errorMessage = "Success! Should be logged in now...";
 }
 ?>
 <!DOCTYPE html>
@@ -21,7 +24,8 @@ if($_POST['user'] && $_POST['pass']){
 </head>
 <body>
 	<h1>Login</h1>
-	<form>
+	<h2><?=$errorMessage?></h2>
+	<form method="post" action="login.php">
 	<label>Username</label>
 	<input name="user" type="text" /><br/>
 	<label>Password</label>

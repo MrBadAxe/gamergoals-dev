@@ -1,4 +1,5 @@
 <?php
+namespace GamerGoals;
 
 class Account{
 	private $mId;
