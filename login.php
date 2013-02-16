@@ -1,5 +1,5 @@
 <?
-include_once './classes/AccountHandler.php';
+include_once './AccountHandler.php';
 use GamerGoals\AccountHandler;
 
 $errorMessage = "";
