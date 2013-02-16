@@ -10,11 +10,11 @@ if(isset($_POST['user']) && isset($_POST['pass'])){
 
 	$accth = AccountHandler::getInstance();
 	try{
-		$vResult = $accth->validateLogin($user,$pass);
+		$vResult = $accth->validateLogin($vUser,$vPass);
+		$errorMessage = "Success! Should be logged in now...";
 	}catch(Exception $e){
 		$errorMessage = $e->getMessage();
 	}
-	$errorMessage = "Success! Should be logged in now...";
 }
 ?>
 <!DOCTYPE html>

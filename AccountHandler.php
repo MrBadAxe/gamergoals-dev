@@ -2,8 +2,7 @@
 
 namespace GamerGoals;
 
-include_once '../ggpath.rc';
-include_once "$ggpath/classes/DatabaseHandler.php";
+include_once "./DatabaseHandler.php";
 use GamerGoals\DatabaseHandler;
 use Exception;
 
@@ -22,7 +21,7 @@ class AccountHandler{
 		$q = "select * from accounts where username = :user";
 		$result = DatabaseHandler::querySingleRowResult($q,array(':user' => $user));
 		if($result == NULL){
-			throw new Exception("No Results");
+			return NULL; //throw new Exception("Username '".$user."' does not exist.");
 		}
 		
 		$rId = $result['userid'];
@@ -65,8 +64,8 @@ class AccountHandler{
 		
 		$acct = self::getAccountByName($mUser);
 		
-		if($acct == FALSE){
-			throw new Exception("Username '".$mUser."' does not exist.");
+		if($acct == NULL){
+			throw new Exception("Username '".$mUser."' does not exist. (returned null)");
 		}
 		if(!$acct::isValid()){
 			throw new Exception("The account for username '".$mUser."' has not been validated.");

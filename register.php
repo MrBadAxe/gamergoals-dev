@@ -1,8 +1,10 @@
 <?
 
-include_once './classes/AccountHandler.php';
+include_once './AccountHandler.php';
+use GamerGoals\AccountHandler;
+$errorMessage = "";
 
-if($_POST['user'] && $_POST['pass1'] && $_POST['pass2'] && $_POST['email']){
+if(isset($_POST['user']) && isset($_POST['pass1']) && isset($_POST['pass2']) && isset($_POST['email'])){
 	$vUser = $_POST['user'];
 	$vPass1 = $_POST['pass1'];
 	$vPass2 = $_POST['pass2'];
@@ -10,11 +12,11 @@ if($_POST['user'] && $_POST['pass1'] && $_POST['pass2'] && $_POST['email']){
 
 	$accth = AccountHandler::getInstance();
 	if($vPass1 != $vPass2){
-		/* set error message, 'your passwords must match' */
-	}elseif($accth::getAccountByName($vUser) == NULL){
-		/* set error message, 'account name already taken' */
+		$errorMessage = "Your passwords must match.";
+	}elseif($accth::getAccountByName($vUser) != NULL){
+		$errorMessage = "Username '".$vUser."' not available.";
 	}else{
-		/* create account */
+		$errorMessage = "creating account...";
 	}
 }
 ?>
@@ -25,12 +27,21 @@ if($_POST['user'] && $_POST['pass1'] && $_POST['pass2'] && $_POST['email']){
 </head>
 <body>
 	<h1>Register</h1>
-	<form>
-	<label>Username</label>
-	<input name="user" type="text" /><br/>
-	<label>Password</label>
-	<input name="pass1" type="password" /><br/>
-	<input name="submit" type="submit" />
+	<h2><?=$errorMessage?></h2>
+	<form method="post" action="register.php">
+		<label>Username</label>
+		<input name="user" type="text" /><br/>
+
+		<label>Password</label>
+		<input name="pass1" type="password" /><br/>
+
+		<label>Repeat Password</label>
+		<input name="pass2" type="password" /><br/>
+
+		<label>Email Address</label>
+		<input name="email" type="text" /><br/>
+
+		<input name="submit" type="submit" />
 	</form>
 </body>
 </html>
