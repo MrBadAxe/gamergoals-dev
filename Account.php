@@ -10,42 +10,42 @@ class Account{
 	private $mValidated;
 	private $mEmail;
 
-	public __construct($id,$un,$pw,$salt,$cr,$v,$em){
-		$mId = $id;
-		$mUsername = $un;
-		$mPassword = $pw;
-		$mPWsalt = $salt;
-		$mCreated = $cr;
-		$mValidated = $v;
-		$mEmail = $em;
+	public function __construct($id, $un, $pw, $salt, $cr, $v, $em){
+		$this->mId = $id;
+		$this->mUsername = $un;
+		$this->mPassword = $pw;
+		$this->mPWsalt = $salt;
+		$this->mCreated = $cr;
+		$this->mValidated = $v;
+		$this->mEmail = $em;
 	}
 
-	private getUserId(){
-		return $mId;
+	public function getUserId(){
+		return $this->mId;
 	}
 
-	private getUsername(){
-		return $mUsername;
+	public function getUsername(){
+		return $this->mUsername;
 	}
 
-	private getPassword(){
-		return $mPassword;
+	public function getPassword(){
+		return $this->mPassword;
 	}
 
-	private getPasswordSalt(){
-		return $mPWsalt;
+	public function getPasswordSalt(){
+		return $this->mPWsalt;
 	}
 	
-	private getCreated(){
-		return $mCreated;
+	public function getCreated(){
+		return $this->mCreated;
 	}
 
-	private isValidated(){
-		return $mValidated;
+	public function isValid(){
+		return $this->mValidated;
 	}
 
-	private getEmail(){
-		return $mEmail;
+	public function getEmail(){
+		return $this->mEmail;
 	}
 
 }

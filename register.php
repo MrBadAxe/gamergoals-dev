@@ -13,10 +13,17 @@ if(isset($_POST['user']) && isset($_POST['pass1']) && isset($_POST['pass2']) && 
 	$accth = AccountHandler::getInstance();
 	if($vPass1 != $vPass2){
 		$errorMessage = "Your passwords must match.";
-	}elseif($accth::getAccountByName($vUser) != NULL){
+	}elseif($accth->accountFromName($vUser) != NULL){
 		$errorMessage = "Username '".$vUser."' not available.";
 	}else{
 		$errorMessage = "creating account...";
+		try{
+			$accth->createAccount($vUser,$vPass1,$vEmail);
+			header("Location: ./redirect.php?mode=1");
+		}catch(Exception $e){
+			$errorMessage = "Error creating account.";
+		}
+		
 	}
 }
 ?>

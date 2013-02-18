@@ -11,7 +11,9 @@ if(isset($_POST['user']) && isset($_POST['pass'])){
 	$accth = AccountHandler::getInstance();
 	try{
 		$vResult = $accth->validateLogin($vUser,$vPass);
-		$errorMessage = "Success! Should be logged in now...";
+		// $errorMessage = "Success! Should be logged in now...";
+		setcookie("user",$vUser,time()+60);
+		header('Location: ./index.php');
 	}catch(Exception $e){
 		$errorMessage = $e->getMessage();
 	}

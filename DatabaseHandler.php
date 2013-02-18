@@ -2,18 +2,19 @@
 
 namespace GamerGoals;
 use PDO;
+use Exception;
 
 class DatabaseHandler{
 
-	private $mDBH;
+	private static $mDBH;
 
 	private function __construct(){}
 
-	public function getInstance(){
-		if($mDBH == null){
-			$mDBH = new DatabaseHandler();
+	public static function getInstance(){
+		if(!isset(self::$mDBH)){
+			self::$mDBH = new DatabaseHandler();
 		}
-		return $mDBH;
+		return self::$mDBH;
 	}
 
 	private function openConnection(){
@@ -21,6 +22,7 @@ class DatabaseHandler{
 		$dsn = "mysql:dbname=".$cfg['db'].";host=".$cfg['hostname'];
 		try{
 			$dbh = new PDO($dsn,$cfg['user'],$cfg['pass']);
+			$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}catch(PDOException $e){
 			echo 'Could not connect: '.$e->getMessage();
 			return 0;
@@ -35,18 +37,28 @@ class DatabaseHandler{
 	}
 
 	public static function querySingleRowResult($q,array $params){
+		//echo $q."\n";
+		//print_r($params);
+		//echo "\n";
+
 		$db = self::openConnection();
 		$st = $db->prepare($q);
-		$st->execute($params);
-		if($st == NULL){
-			return FALSE;
-		}else{
+
+		foreach(array_keys($params) as $k){
+			//echo $k.":".$params[$k]."\n";
+			$st->bindValue($k,$params[$k]);
+		}
+
+		if($st->execute()){
 			return $st->fetch(PDO::FETCH_ASSOC);
+		}else{
+			$st->debugDumpParams();
+			throw new Exception("Query failed");
 		}
 	}
 	
 	public static function queryMultiRowResult($q,array $params){
-		$db = self::openConnection();
+		$db = self::$mConnection;
 		$st = $db->prepare($q);
 		$st->execute($params);
 		return $st->fetchAll(PDO::FETCH_ASSOC);
