@@ -11,36 +11,36 @@ class Game{
 	private $mPublisher;
 
 	public __construct($id,$n,$pl,$y,$dev,$pub){
-		$mId = $id;
-		$mName = $n;
-		$mPlatform = $pl;
-		$mYear = $y;
-		$mDeveloper = $dev;
-		$mPublisher = $pub;
+		$this->mId = $id;
+		$this->mName = $n;
+		$this->mPlatform = $pl;
+		$this->mYear = $y;
+		$this->mDeveloper = $dev;
+		$this->mPublisher = $pub;
 	}
 
 	public getGameId(){
-		return $mId;
+		return $this->mId;
 	}
 
 	public getName(){
-		return $mName;
+		return $this->mName;
 	}
 
 	public getPlatform(){
-		return $mPlatform;
+		return $this->mPlatform;
 	}
 
 	public getYear(){
-		return $mYear;
+		return $this->mYear;
 	}
 
 	public getDeveloper(){
-		return $mDeveloper;
+		return $this->mDeveloper;
 	}
 
 	public getPublisher(){
-		return $mPublisher;
+		return $this->mPublisher;
 	}
 
 }
