@@ -31,8 +31,11 @@ if(isset($_POST['user']) && isset($_POST['pass1']) && isset($_POST['pass2']) && 
 <html>
 <head>
 	<title>Register | GamerGoals</title>
+	<script src="./bootstrap/js/bootstrap.min.js"></script>
+	<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 </head>
 <body>
+	<? include "./navbar.inc"; ?>
 	<h1>Register</h1>
 	<h2><?=$errorMessage?></h2>
 	<form method="post" action="register.php">

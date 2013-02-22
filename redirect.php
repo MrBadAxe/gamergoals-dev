@@ -34,8 +34,11 @@
 <html>
 <head>
 	<title><?=$dispTitle?> | GamerGoals</title>
+	<script src="./bootstrap/js/bootstrap.min.js"></script>
+	<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 </head>
 <body>
+	<? include "./navbar.inc"; ?>
 	<h1><?=$dispH1?></h1>
 	<h2><?=$dispH2?></h2>
 	<h3>if you don't redirect automatically, click <a href="./index.php">here</a></h3>

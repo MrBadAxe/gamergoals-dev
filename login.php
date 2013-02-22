@@ -23,8 +23,11 @@ if(isset($_POST['user']) && isset($_POST['pass'])){
 <html>
 <head>
 	<title>Login | GamerGoals</title>
+	<script src="./bootstrap/js/bootstrap.min.js"></script>
+	<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 </head>
 <body>
+	<? include "./navbar.inc" ?>
 	<h1>Login</h1>
 	<h2><?=$errorMessage?></h2>
 	<form method="post" action="login.php">
