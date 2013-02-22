@@ -30,12 +30,23 @@ if(isset($_POST['user']) && isset($_POST['pass'])){
 	<? include "./navbar.inc" ?>
 	<h1>Login</h1>
 	<h2><?=$errorMessage?></h2>
-	<form method="post" action="login.php">
-	<label>Username</label>
-	<input name="user" type="text" /><br/>
-	<label>Password</label>
-	<input name="pass" type="password" /><br/>
-	<input name="submit" type="submit" />
+	<form method="post" action="login.php" class="form-horizontal">
+	<div class="control-group">
+		<label class="control-label" for="inputUsername">Username</label>
+		<div class="controls">
+		<input id="inputUsername" name="user" type="text" /><br/>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="inputPassword">Password</label>
+		<div class="controls">
+		<input id="inputPassword" name="pass" type="password" /><br/>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="controls">
+		<button name="submit" type="submit">Submit</button>
+		</div>
 	</form>
 </body>
 </html>
