@@ -58,10 +58,27 @@ class DatabaseHandler{
 	}
 	
 	public static function queryMultiRowResult($q,array $params){
-		$db = self::$mConnection;
+		//echo $q."\n";
+		//print_r($params);
+		//echo "\n";
+
+		$db = self::openConnection();
 		$st = $db->prepare($q);
-		$st->execute($params);
-		return $st->fetchAll(PDO::FETCH_ASSOC);
+
+		foreach(array_keys($params) as $k){
+			//echo $k.":".$params[$k]."\n";
+			$st->bindValue($k,$params[$k]);
+		}
+
+		if($st->execute()){
+			return $st->fetchAll(PDO::FETCH_ASSOC);
+		}else{
+			$st->debugDumpParams();
+			throw new Exception("Query failed");
+		}
+
+		//$st->execute($params);
+		//return $st->fetchAll(PDO::FETCH_ASSOC);
 	}
 }
 
