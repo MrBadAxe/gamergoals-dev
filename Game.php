@@ -10,7 +10,7 @@ class Game{
 	private $mDeveloper;
 	private $mPublisher;
 
-	public __construct($id,$n,$pl,$y,$dev,$pub){
+	public function __construct($id, $n, $pl, $y, $dev, $pub){
 		$this->mId = $id;
 		$this->mName = $n;
 		$this->mPlatform = $pl;
@@ -19,28 +19,38 @@ class Game{
 		$this->mPublisher = $pub;
 	}
 
-	public getGameId(){
+	public function getGameId(){
 		return $this->mId;
 	}
 
-	public getName(){
+	public function getName(){
 		return $this->mName;
 	}
 
-	public getPlatform(){
+	public function getPlatform(){
 		return $this->mPlatform;
 	}
 
-	public getYear(){
+	public function getYear(){
 		return $this->mYear;
 	}
 
-	public getDeveloper(){
+	public function getDeveloper(){
 		return $this->mDeveloper;
 	}
 
-	public getPublisher(){
+	public function getPublisher(){
 		return $this->mPublisher;
+	}
+
+	public function toCSVString($sep = ':'){
+		$z = $this->mId .$sep;
+		$z .= $this->mName . $sep;
+		$z .= $this->mPlatform . $sep;
+		$z .= $this->mYear . $sep;
+		$z .= $this->mDeveloper . $sep;
+		$z .= $this->mPublisher;
+		return $z;
 	}
 
 }
