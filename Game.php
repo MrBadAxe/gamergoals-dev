@@ -53,6 +53,10 @@ class Game{
 		return $z;
 	}
 
+	public static function fromResultRow(array $a){
+		return new Game($a['gameid'],$a['name'],$a['platform'],$a['year'],$a['developer'],$a['publisher']);
+	}
+
 }
 
 ?>
