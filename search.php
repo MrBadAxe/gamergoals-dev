@@ -1,5 +1,15 @@
-<?php
-	if(isset($_GET['searchterms']){
+<?
+include_once "./SearchEngine.php";
+use GamerGoals\SearchEngine;
+
+	$resultsSection = "";
+	$sen = SearchEngine::getInstance();
+	if(isset($_POST['search'])){
+		$results = $sen::findGames($_POST['search']);
+		foreach($results as $r){
+			$resultsSection .= $r->toCSVString()."<br/>";
+		}
+
 	}
 ?>
 <!DOCTYPE html>
@@ -15,7 +25,7 @@
 <div class="container">
 	<div class="row">
 		<div class="span10 offset1">
-			<form class="form-search" onsubmit="">
+			<form class="form-search" method="post" action="search.php">
 				<div class="input-append">
 				<input type="text" class="span8" name="search" placeholder="Search for..." />
 				<button type="submit" class="btn" name="submit">Search</button>
@@ -24,6 +34,7 @@
 		</div>
 	</div>
 	<div class="row" name="search-results">
+		<?=$resultsSection?>
 	</div>
 </div>
 

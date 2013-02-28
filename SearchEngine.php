@@ -71,7 +71,7 @@ class SearchEngine{
 			$q = self::buildQuery($subTerms);
 			$results = $dbh::queryMultiRowResult($q,$subTerms);
 			foreach($results as $row){
-				$g = new Game($row['gameid'],$row['name'],$row['platform'],$row['year'],$row['developer'],$row['publisher']);
+				$g = Game::fromResultRow($row);
 				array_push($z,$g);
 			}
 		}else{
@@ -84,8 +84,8 @@ class SearchEngine{
 
 				$results = $dbh::queryMultiRowResult($q,$t);
 				foreach($results as $row){
-					$g = new Game($row['gameid'],$row['name'],$row['platform'],$row['year'],$row['developer'],$row['publisher']);
-					array_push($z,$g);
+					$g = Game::fromResultRow($row);
+					if(!in_array($g,$z)){	array_push($z,$g);	}
 				}
 			}
 		}	
