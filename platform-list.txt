@@ -1,0 +1,15 @@
+nes:Nintendo Entertainment System
+snes:Super Nintendo
+n64:Nintendo 64
+gcn:Nintendo Gamecube
+wii:Wii
+xbox:Microsoft XBox
+x360:Microsoft XBox 360
+ps1:Sony PlayStation
+ps2:Sony PlayStation 2
+ps3:Sony PlayStation 3
+sms:Sega Master System
+sega:Sega Genesis
+strn:Sega Saturn
+sdc:Sega Dreamcast
+a26:Atari 2600

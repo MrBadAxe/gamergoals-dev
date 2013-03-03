@@ -1,13 +1,16 @@
 <?
 include_once "./SearchEngine.php";
+include_once "./GameView.php";
 use GamerGoals\SearchEngine;
+use GamerGoals\GameView;
 
 	$resultsSection = "";
 	$sen = SearchEngine::getInstance();
 	if(isset($_POST['search'])){
 		$results = $sen::findGames($_POST['search']);
 		foreach($results as $r){
-			$resultsSection .= $r->toCSVString()."<br/>";
+			//$resultsSection .= $r->toCSVString()."<br/>";
+			$resultsSection .= GameView::toSearchResultRow($r)."\n";
 		}
 
 	}
