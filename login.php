@@ -12,7 +12,7 @@ if(isset($_POST['user']) && isset($_POST['pass'])){
 	try{
 		$vResult = $accth->validateLogin($vUser,$vPass);
 		// $errorMessage = "Success! Should be logged in now...";
-		setcookie("user",$vUser,time()+60);
+		setcookie("user",$vUser,time()+(60*60));
 		header('Location: ./index.php');
 	}catch(Exception $e){
 		$errorMessage = $e->getMessage();
