@@ -22,19 +22,25 @@ class GameHandler{
 		$q = "select * from games where gameid = :id";
 		$result = DatabaseHandler::querySingleRowResult($q,array(':id' => $id));
 		if($result == NULL){	return NULL; 	}
-		return self::gameFromResultRow($result)
+		return self::gameFromResultRow($result);
 	}
 
 	public static function gameFromName($name){
 		$q = "select * from games where name = :name";
 		$result = DatabaseHandler::querySingleRowResult($q,array(':name' => $name));
 		if($result == NULL){	return NULL; 	}
-		return self::gameFromResultRow($result)
+		return self::gameFromResultRow($result);
 	}
 
 	public static function gameFromResultRow(array $a){
 		return new Game($a['gameid'],$a['name'],$a['platform'],$a['year'],$a['developer'],$a['publisher']);
 	}
+
+	public static function ownsGame(Account $a, Game $g){
+		$q = "select * from owned where userid = :userid and gameid = :gameid";
+		$result = DatabaseHandler::querySingleRowResult($q,array(':userid'=>$a->getUserId(), ':gameid'=>$game->getGameId()));
+		return !($result == NULL);
+	} 
 }
 
 ?>

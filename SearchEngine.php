@@ -3,9 +3,9 @@
 namespace GamerGoals;
 
 include_once "./DatabaseHandler.php";
-include_once "./Game.php";
+include_once "./GameHandler.php";
 use GamerGoals\DatabaseHandler;
-use GamerGoals\Game;
+use GamerGoals\GameHandler;
 
 class SearchEngine{
 	private function __construct(){}
@@ -39,7 +39,7 @@ class SearchEngine{
 		
 		$z = array();
 		foreach($results as $row){
-			array_push($z,new Game());
+			array_push($z,GameHandler::gameFromResultRow($row));
 		}
 		return $z;
 	}
@@ -84,7 +84,7 @@ class SearchEngine{
 
 				$results = $dbh::queryMultiRowResult($q,$t);
 				foreach($results as $row){
-					$g = Game::fromResultRow($row);
+					$g = GameHandler::gameFromResultRow($row);
 					if(!in_array($g,$z)){	array_push($z,$g);	}
 				}
 			}
