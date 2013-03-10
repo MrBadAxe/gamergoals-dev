@@ -19,6 +19,14 @@ class AccountHandler{
 		return self::$accth;
 	}
 
+	public static function accountFromId($id){
+		$q = "select * from accounts where userid = :id";
+		$result = DatabaseHandler::querySingleRowResult($q,array(':id' => $id));
+		if($result == NULL){	return NULL; 	}
+		return new Account($result['userid'], $result['username'], $result['password'], $result['pwsalt'],
+					$result['created'], $result['validated'], $result['email']);
+	}
+
 	public static function accountFromName($user){
 		$q = "select * from accounts where username = :user";
 		$result = DatabaseHandler::querySingleRowResult($q,array(':user' => $user));
