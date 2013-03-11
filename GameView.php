@@ -31,7 +31,7 @@ class GameView{
 		return self::$platforms[$key];	
 	}
 
-	public static function toSearchResultRow(Game $g){
+	public static function toSearchResultRow(Game $g, Collection $c = NULL){
 		$z = '<div class="row well well-small">';
 
 		$z .= '<div class="span4">';
@@ -50,7 +50,12 @@ class GameView{
 		$z .= "</div>";
 
 		$z .= '<div class="span3">';
-		$z .= '<button class="btn btn-large">Add to My Collection</button>';
+		if($c != NULL && $c->hasGame($g)){
+			$z .= '<button class="btn btn-large btn-primary">In My Collection</button>';	
+		}else{
+			$z .= '<button class="btn btn-large">Add to My Games</button>';
+		}
+
 		$z .= "</div>";
 		
 		$z .= "</div>";
