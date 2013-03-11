@@ -28,25 +28,33 @@ if(isset($_POST['user']) && isset($_POST['pass'])){
 </head>
 <body>
 	<? include "./navbar.inc" ?>
-	<h1>Login</h1>
-	<h2><?=$errorMessage?></h2>
-	<form method="post" action="login.php" class="form-horizontal">
-	<div class="control-group">
-		<label class="control-label" for="inputUsername">Username</label>
-		<div class="controls">
-		<input id="inputUsername" name="user" type="text" /><br/>
+	<div class="container">
+		<div class="row text-center">
+			<h1>Login</h1>
+			<h2><?=$errorMessage?></h2>
+		</div>
+		<div class="row">
+			<div class="span6 offset3">
+				<form method="post" action="login.php" class="form-horizontal">
+				<div class="control-group">
+					<label class="control-label" for="inputUsername">Username</label>
+					<div class="controls">
+					<input id="inputUsername" name="user" type="text" /><br/>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputPassword">Password</label>
+					<div class="controls">
+					<input id="inputPassword" name="pass" type="password" /><br/>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+					<button name="submit" type="submit">Submit</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
-	<div class="control-group">
-		<label class="control-label" for="inputPassword">Password</label>
-		<div class="controls">
-		<input id="inputPassword" name="pass" type="password" /><br/>
-		</div>
-	</div>
-	<div class="control-group">
-		<div class="controls">
-		<button name="submit" type="submit">Submit</button>
-		</div>
-	</form>
 </body>
 </html>

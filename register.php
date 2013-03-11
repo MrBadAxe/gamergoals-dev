@@ -36,37 +36,43 @@ if(isset($_POST['user']) && isset($_POST['pass1']) && isset($_POST['pass2']) && 
 </head>
 <body>
 	<? include "./navbar.inc"; ?>
-	<h1>Register</h1>
-	<h2><?=$errorMessage?></h2>
-	<form method="post" action="register.php" class="form-horizontal">
-	<div class="control-group">
-		<label class="control-label" for="inputUsername">Username</label>
-		<div class="controls">
-		<input id="inputUsername" name="user" type="text" /><br/>
+	<div class="container">
+		<div class="row text-center">
+			<h1>Register</h1>
+			<h2><?=$errorMessage?></h2>
+		</div>
+		<div class="span6 offset3">
+			<form method="post" action="register.php" class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label" for="inputUsername">Username</label>
+				<div class="controls">
+				<input id="inputUsername" name="user" type="text" /><br/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputPassword">Password</label>
+				<div class="controls">
+				<input id="inputPassword" name="pass1" type="password" /><br/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputPassRepeat">Repeat Password</label>
+				<div class="controls">
+				<input id="inputPassRepeat" name="pass2" type="password" /><br/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputEmail">Email</label>
+				<div class="controls">
+				<input id="inputEmail" name="email" type="text" /><br/>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+				<button name="submit" type="submit">Submit</button>
+				</div>
+			</form>
 		</div>
 	</div>
-	<div class="control-group">
-		<label class="control-label" for="inputPassword">Password</label>
-		<div class="controls">
-		<input id="inputPassword" name="pass1" type="password" /><br/>
-		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label" for="inputPassRepeat">Repeat Password</label>
-		<div class="controls">
-		<input id="inputPassRepeat" name="pass2" type="password" /><br/>
-		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label" for="inputEmail">Email</label>
-		<div class="controls">
-		<input id="inputEmail" name="email" type="text" /><br/>
-		</div>
-	</div>
-	<div class="control-group">
-		<div class="controls">
-		<button name="submit" type="submit">Submit</button>
-		</div>
-	</form>
 </body>
 </html>

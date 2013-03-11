@@ -8,8 +8,12 @@
 <body>
 
 <? include "./navbar.inc"; ?>
-<h1>GamerGoals</h1>
-<div>under construction</div><br/>
+<div class="container">
+	<div class="row text-center">
+		<h1>GamerGoals</h1>
+		<div>under construction</div>
+	</div>
+</div>
 
 </body>
 </html>
