@@ -51,9 +51,9 @@ class GameView{
 
 		$z .= '<div class="span3">';
 		if($c != NULL && $c->hasGame($g)){
-			$z .= '<button class="btn btn-large btn-primary">In My Collection</button>';	
+			$z .= '<button class="btn btn-large btn-block btn-primary">In My Collection</button>';	
 		}else{
-			$z .= '<button class="btn btn-large">Add to My Games</button>';
+			$z .= '<button class="btn btn-large btn-block">Add to My Games</button>';
 		}
 
 		$z .= "</div>";
