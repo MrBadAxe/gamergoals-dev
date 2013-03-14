@@ -15,7 +15,11 @@ if(isset($_POST['user']) && isset($_POST['pass'])){
 		setcookie("user",$vUser,time()+(60*60));
 		header('Location: ./index.php');
 	}catch(Exception $e){
-		$errorMessage = $e->getMessage();
+		$errorMessage .= $e->getMessage();
+	}
+
+	if($errorMessage != ""){
+		$errorMessage = '<div class="alert alert-error text-center">'.$errorMessage.'</div>';
 	}
 }
 ?>
@@ -31,7 +35,11 @@ if(isset($_POST['user']) && isset($_POST['pass'])){
 	<div class="container">
 		<div class="row text-center">
 			<h1>Login</h1>
-			<h2><?=$errorMessage?></h2>
+		</div>
+		<div class="row">
+			<div class="span6 offset3">
+				<?=$errorMessage?>
+			</div>
 		</div>
 		<div class="row">
 			<div class="span6 offset3">

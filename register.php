@@ -11,10 +11,14 @@ if(isset($_POST['user']) && isset($_POST['pass1']) && isset($_POST['pass2']) && 
 	$vEmail = $_POST['email'];
 
 	$accth = AccountHandler::getInstance();
-	if($vPass1 != $vPass2){
-		$errorMessage = "Your passwords must match.";
+	if($vUser == ""){
+		$errorMessage = "You must enter a username.";
 	}elseif($accth->accountFromName($vUser) != NULL){
 		$errorMessage = "Username '".$vUser."' not available.";
+	}elseif(strlen($vPass1) < 6){
+		$errorMessage = "Your password must be at least 6 characters long.";
+	}elseif($vPass1 != $vPass2){
+		$errorMessage = "Your passwords must match.";
 	}else{
 		$errorMessage = "creating account...";
 		try{
@@ -24,6 +28,10 @@ if(isset($_POST['user']) && isset($_POST['pass1']) && isset($_POST['pass2']) && 
 			$errorMessage = "Error creating account.";
 		}
 		
+	}
+
+	if($errorMessage != ""){
+		$errorMessage = '<div class="alert alert-error text-center">'.$errorMessage.'</div>';
 	}
 }
 ?>
@@ -39,7 +47,11 @@ if(isset($_POST['user']) && isset($_POST['pass1']) && isset($_POST['pass2']) && 
 	<div class="container">
 		<div class="row text-center">
 			<h1>Register</h1>
-			<h2><?=$errorMessage?></h2>
+		</div>
+		<div class="row">
+			<div class="span6 offset3">
+				<?=$errorMessage?>
+			</div>
 		</div>
 		<div class="span6 offset3">
 			<form method="post" action="register.php" class="form-horizontal">
