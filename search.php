@@ -33,6 +33,7 @@ use GamerGoals\Collection;
 <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 </head>
 <body>
+<script src="./owned.js"></script>
 
 <? include "./navbar.inc"; ?>
 <div class="container">

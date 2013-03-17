@@ -50,17 +50,39 @@ class GameView{
 		$z .= "</div>";
 
 		$z .= '<div class="span3">';
-		if($c != NULL && $c->hasGame($g)){
-			$z .= '<button class="btn btn-large btn-block btn-primary">In My Collection</button>';	
-		}else{
-			$z .= '<button class="btn btn-large btn-block">Add to My Games</button>';
-		}
+		$z .= self::generateStatusButton($g,$c);
 
 		$z .= "</div>";
 		
 		$z .= "</div>";
 
 		return $z;		
+	}
+
+	private static function generateStatusButton(Game $g, Collection $c = NULL){
+		$name = strtolower($g->getName());
+		$name = str_replace(' ','_',$name);
+		$name = str_replace(':','',$name);
+		$name = str_replace('.','',$name);
+		$name = str_replace('!','',$name);
+
+		$id = "btn_".$name."_".$g->getPlatform();
+
+		$btn = '<a id="'.$id.'" class="btn btn-large btn-block';
+
+		if($c == NULL || $c->getUserId() == 0){
+			$btn .= '" href="login.php">Login to Add';
+		}elseif(!$c->hasGame($g)){
+			$btn .= '" onclick="add(';
+			$btn .= "'" . $id . "'" .',';
+			$btn .= "'" . $c->getUserId() . "'" . ',';
+			$btn .= "'" . $g->getGameId() . "'";
+			$btn .= ')">Add to My Games';
+		}else{
+			$btn .= ' btn-primary" href="my.php">In My Collection';
+		}
+		$btn .= '</a>';
+		return $btn;
 	}
 
 }
