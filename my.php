@@ -34,8 +34,7 @@ if(isset($_COOKIE['user'])){
 	<div class="row">
 	<?
 		foreach($c->getOwnedGameList() as $og){
-			//print_r($og->getGame());
-			echo GameView::toSearchResultRow($og->getGame(),$c);
+			echo GameView::toCollectionItem($og);
 		}
 	?>	
 	</div>

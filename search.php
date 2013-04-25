@@ -11,16 +11,16 @@ use GamerGoals\Collection;
 	$resultsSection = "";
 	if(isset($_COOKIE['user'])){
 		$accth = AccountHandler::getInstance();
-		$c = new Collection($accth->accountFromName($_COOKIE['user']));
+		$a = $accth->accountFromName($_COOKIE['user']);
 	}else{
-		$c = new Collection(NULL);
+		$a = NULL;
 	}
 	$sen = SearchEngine::getInstance();
 
 	if(isset($_POST['search'])){
 		$results = $sen::findGames($_POST['search']);
 		foreach($results as $r){
-			$resultsSection .= GameView::toSearchResultRow($r,$c)."\n";
+			$resultsSection .= GameView::toSearchResultRow($r,$a)."\n";
 		}
 
 	}

@@ -1,0 +1,5 @@
+W:Wish List
+S:Show Piece
+B:Back Burner
+I:In Progress
+C:Completed

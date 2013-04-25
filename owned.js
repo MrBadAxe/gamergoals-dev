@@ -24,6 +24,7 @@ function refreshButton(result,buttonid){
 	var btn = document.getElementById(buttonid);
 	if(result == "success"){
 		btn.setAttribute("class","btn btn-large btn-block btn-success");
+		//btn.setAttribute("href","./my.php");
 		btn.innerHTML="Added!";
 		return 0;
 	}else{

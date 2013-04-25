@@ -38,7 +38,7 @@ class GameHandler{
 
 	public static function ownsGame(Account $a, Game $g){
 		$q = "select * from owned where userid = :userid and gameid = :gameid";
-		$result = DatabaseHandler::querySingleRowResult($q,array(':userid'=>$a->getUserId(), ':gameid'=>$game->getGameId()));
+		$result = DatabaseHandler::querySingleRowResult($q,array(':userid'=>$a->getUserId(), ':gameid'=>$g->getGameId()));
 		return !($result == NULL);
 	} 
 }
