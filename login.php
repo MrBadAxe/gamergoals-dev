@@ -13,7 +13,12 @@ if(isset($_POST['user']) && isset($_POST['pass'])){
 		$vResult = $accth->validateLogin($vUser,$vPass);
 		// $errorMessage = "Success! Should be logged in now...";
 		setcookie("user",$vUser,time()+(60*60));
-		header('Location: ./index.php');
+		if(isset($_POST['referer']) && $_POST['referer'] != NULL & $_POST['referer'] != ""){
+			$newloc = $_POST['referer'];
+		}else{
+			$newloc = 'index.php';
+		}
+		header('Location: '.$newloc);
 	}catch(Exception $e){
 		$errorMessage .= $e->getMessage();
 	}
@@ -60,6 +65,8 @@ if(isset($_POST['user']) && isset($_POST['pass'])){
 					<div class="controls">
 					<button name="submit" type="submit">Submit</button>
 					</div>
+				</div>
+				<input type="hidden" name="referer" value="<?=$_SERVER['HTTP_REFERER']?>"/>
 				</form>
 			</div>
 		</div>

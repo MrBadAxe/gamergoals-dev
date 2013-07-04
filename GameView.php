@@ -51,7 +51,7 @@ class GameView{
 		$z = '<div class="row well well-small">';
 
 		$z .= '<div class="span4">';
-		$z .= '<strong><a href="game.php?id='.$g->getGameId().'">'.$g->getName().'</a></strong><br/>';
+		$z .= '<strong><a href="viewgame.php?id='.$g->getGameId().'">'.$g->getName().'</a></strong><br/>';
 		$z .= 'for <em>'.self::formatPlatform($g->getPlatform()).'</em> ('.$g->getYear().')';
 		$z .= "</div>";		
 		
@@ -79,7 +79,7 @@ class GameView{
 		$g = $og->getGame();
 		$z = '<div class="row well well-small">';
 		$z .= '<div class="span4">';
-		$z .= '<strong><a href="game.php?id='.$g->getGameId().'">'.$g->getName().'</a></strong>';
+		$z .= '<strong><a href="viewgame.php?id='.$g->getGameId().'">'.$g->getName().'</a></strong>';
 		$z .= '</div>';
 		$z .= '<div class="span4">';
 		$z .= '<em>'.self::formatPlatform($g->getPlatform()).'</em>';
