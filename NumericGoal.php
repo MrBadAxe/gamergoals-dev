@@ -51,7 +51,7 @@ class NumericGoal{
 	}
 
 	public function setCurrent($newcur){
-		$this->mCurrent = $newcur
+		$this->mCurrent = $newcur;
 	}
 
 	public function toCSVString($sep = ':'){
