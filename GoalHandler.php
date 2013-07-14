@@ -3,11 +3,13 @@
 namespace GamerGoals;
 
 include_once "./DatabaseHandler.php";
-include_once "./BinaryGoal.php";
+#include_once "./BinaryGoal.php";
 include_once "./NumericGoal.php";
+include_once "./GoalList.php";
 use GamerGoals\DatabaseHandler;
-use GamerGoals\BinaryGoal;
+#use GamerGoals\BinaryGoal;
 use GamerGoals\NumericGoal;
+use GamerGoals\GoalList;
 
 class GoalHandler{
 	private function __construct(){}
@@ -21,21 +23,17 @@ class GoalHandler{
 	}
 
 	public static function goalFromId($type,$id){
-		if($type != 'B' && $type != 'N'){
-			return NULL;
-		}
-		$table = (($type == 'B') ? "binarygoals" : "numericgoals");
-		$q = "select * from ".$table." where goalid = :id";
+		$q = "select * from numericgoals where goalid = :id";
 		$result = DatabaseHandler::querySingleRowResult($q,array(':id' => $id));
 		if($result == NULL){	return NULL; 	}
 		return self::goalFromResultRow($type,$result);
 	}
 
 	public static function goalListFromAccount($game,$acct){
-		$bq = "select * from binarygoals where game = :game and account = :acct";
+		#$bq = "select * from binarygoals where game = :game and account = :acct";
 		$nq = "select * from numericgoals where game = :game and account = :acct";
 		
-		$bresults = DatabaseHandler::queryMultiRowResult($bq,array(':game' => $game,':acct' => $acct));
+		#$bresults = DatabaseHandler::queryMultiRowResult($bq,array(':game' => $game,':acct' => $acct));
 		$nresults = DatabaseHandler::queryMultiRowResult($nq,array(':game' => $game,':acct' => $acct));
 
 		#if($result == NULL){	return NULL; 	}
@@ -43,8 +41,7 @@ class GoalHandler{
 	}
 
 	public static function goalFromResultRow($t, array $a){
-		return (($t == 'B') 	? new BinaryGoal($a['goalid'],$a['name'],$a['platform'],$a['year'],$a['developer'],$a['publisher'])
-					: new NumericGoal($a['goalid']));
+		return new NumericGoal($a['goalid'],$a['userid'],$a['gameid'],$a['description'],$a['parent'],$a['target'],$a['current']);
 	}
 
 

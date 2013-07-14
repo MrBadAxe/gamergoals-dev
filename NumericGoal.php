@@ -7,15 +7,17 @@ use GamerGoals\OwnedGame;
 class NumericGoal{
 
 	private $mGoalId;
-	private $mOwnedGame;
+	private $mUserId;
+	private $mGameId;
 	private $mDescription;
 	private $mParent;
 	private $mTarget;
 	private $mCurrent;
 
-	public function __construct($id, OwnedGame $og, $desc, $p = NULL, $tgt, $cur = 0){
-		$this->mGoalId = $id;
-		$this->mOwnedGame = $og;
+	public function __construct($goalid, $userid, $gameid, $desc, $p = NULL, $tgt, $cur = 0){
+		$this->mGoalId = $goalid;
+		$this->mUserId = $userid;
+		$this->mGameId = $gameid;
 		$this->mDescription = $desc;
 		$this->mParent = $p;
 		$this->mTarget = $tgt;
@@ -25,9 +27,11 @@ class NumericGoal{
 	public function getGoalId(){
 		return $this->mGoalId;
 	}
-
-	public function getOwnedGame(){
-		return $this->mOwnedGame;
+	public function getUserId(){
+		return $this->mUserId;
+	}
+	public function getGameId(){
+		return $this->mGameId;
 	}
 
 	public function getDescription(){
@@ -56,7 +60,8 @@ class NumericGoal{
 
 	public function toCSVString($sep = ':'){
 		$z = $this->mGoalId .$sep;
-		$z .= '('.$this->mOwnedGame->toCSVString().')' . $sep;
+		$z = $this->mUserId .$sep;
+		$z = $this->mGameId .$sep;
 		$z .= $this->mDescription . $sep;
 		$z .= $this->mParent . $sep;
 		$z .= $this->mTarget . $sep;
