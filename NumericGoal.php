@@ -51,7 +51,11 @@ class NumericGoal{
 	}
 
 	public function getCurrent(){
-		return $this->Current;
+		return $this->mCurrent;
+	}
+
+	public function isComplete(){
+		return ($this->mCurrent > $this->mTarget);
 	}
 
 	public function setCurrent($newcur){
