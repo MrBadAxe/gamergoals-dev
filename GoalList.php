@@ -1,4 +1,6 @@
 <?php
+namespace Gamergoals;
+
 include_once './DatabaseHandler.php';
 include_once './AccountHandler.php';
 include_once './Account.php';
